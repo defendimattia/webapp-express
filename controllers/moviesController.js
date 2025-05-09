@@ -9,6 +9,7 @@ function index(req, res) {
     })
 }
 
+
 function show(req, res) {
 
     const id = req.params.id
@@ -17,7 +18,18 @@ function show(req, res) {
     connection.query(sql, [id], (err, results) => {
         if (err) return res.status(500).json({ error: "Database query failed" })
         if (results.length === 0) return res.status(404).json({ error: "Movie not found" })
-        res.json(results[0])
+
+        const movie = results[0]
+
+        sqlReview = "SELECT * FROM reviews WHERE movie_id = ?"
+
+        connection.query(sqlReview, [id], (err, results) => {
+            if (err) return res.status(500).json({ error: "Database query failed" })
+
+            movie.reviews = results
+            
+            res.json(movie)
+        })
     })
 }
 
