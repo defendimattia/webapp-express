@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-const port = 3000
+const port = process.env.SERVER_PORT
 const moviesRouter = require("./routers/moviesRoutes")
 
 app.get("/", (req, res) => {
