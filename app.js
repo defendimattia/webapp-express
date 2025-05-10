@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const port = process.env.SERVER_PORT
 const moviesRouter = require("./routers/moviesRoutes")
+const errorsHandler = require("./middlewares/errorsHandler")
 
 app.use(express.static('public'))
 
@@ -10,6 +11,8 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/movies", moviesRouter)
+
+app.use(errorsHandler)
 
 app.listen(port, () => {
     console.log("CHECK! express on port " + port)
