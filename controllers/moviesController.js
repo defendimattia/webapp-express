@@ -5,14 +5,14 @@ function index(req, res) {
     sql = "SELECT * FROM movies"
     connection.query(sql, (err, results) => {
         if (err) return res.status(500).json({ error: "Database query failed" })
-        res.json(results.map(result => ({ ...result, image_path: process.env.PUBLIC_PATH +"movies/"+result.image })))
+        res.json(results.map(result => ({ ...result, image_path: process.env.PUBLIC_PATH + "movies/" + result.image })))
     })
 }
 
 
 function show(req, res) {
 
-    const id = req.params.id
+    const { id } = req.params
 
     sql = "SELECT * FROM movies WHERE id = ?"
     connection.query(sql, [id], (err, results) => {
