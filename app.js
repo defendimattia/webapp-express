@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const port = process.env.SERVER_PORT
-const cosr = require("cors")
+const cors = require("cors")
 
 // routers
 const moviesRouter = require("./routers/moviesRoutes")
