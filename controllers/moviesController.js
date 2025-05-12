@@ -1,4 +1,4 @@
-const connection = require("../data/book-db")
+const connection = require("../data/movies-db")
 
 function index(req, res) {
 
