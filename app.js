@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const port = process.env.SERVER_PORT
+const cosr = require("cors")
 
 // routers
 const moviesRouter = require("./routers/moviesRoutes")
@@ -8,6 +9,10 @@ const moviesRouter = require("./routers/moviesRoutes")
 // middlewares
 const errorsHandler = require("./middlewares/errorsHandler")
 const notFound = require("./middlewares/notFound")
+
+app.use(cors({
+    origin: process.env.FE_APP
+}))
 
 // middleware static asstets
 app.use(express.static('public'))
