@@ -33,7 +33,18 @@ function show(req, res) {
     })
 }
 
+
+function movieReview(req, res) {
+
+    const { id } = req.params
+
+    res.send(`review added movie ${id}`)
+}
+
+
+
 module.exports = {
     index,
-    show
+    show,
+    movieReview
 }

@@ -17,6 +17,9 @@ app.use(cors({
 // middleware static asstets
 app.use(express.static('public'))
 
+// middleware body-parser json
+app.use(express.json())
+
 
 // welcome page
 app.get("/", (req, res) => {
