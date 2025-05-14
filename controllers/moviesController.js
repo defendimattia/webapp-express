@@ -37,8 +37,14 @@ function show(req, res) {
 function movieReview(req, res) {
 
     const { id } = req.params
+    const { name, vote, text } = req.body
+    sql = "INSERT INTO `movies_db`.`reviews` (`movie_id`, `name`, `vote`, `text`) VALUES (?, ?, ?, ?);"
 
-    res.send(`review added movie ${id}`)
+    connection.query(sql, [id, name, vote, text], (err, results) => {
+        if (err) return res.status(500).json({ error: "Database query failed" })
+
+        res.status(201).json({ message: "Review created successfully!" })
+    })
 }
 
 
